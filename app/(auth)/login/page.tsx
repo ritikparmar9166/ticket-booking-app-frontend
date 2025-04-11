@@ -58,7 +58,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex flex-col gap-6 items-center justify-center min-h-screen p-4">
+    <div className="min-h-screen bg-cover bg-center bg-no-repeat bg-[url('/img.png')] flex items-center justify-center p-4">
       <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle className="text-2xl">Login</CardTitle>

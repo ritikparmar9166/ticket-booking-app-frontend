@@ -4,6 +4,16 @@ import { useEffect, useState } from "react";
 import { getAllSeats, BookSeats, ResetSeatsCall } from "../../functions/seats.js";
 // import { BookSeats } from "../../functions/book.js";
 import { toast } from "sonner"
+import {
+    Card,
+    CardHeader,
+    CardTitle,
+    CardContent,
+    CardFooter,
+  } from "@/components/ui/card";
+  import { Label } from "@/components/ui/label";
+  import { Input } from "@/components/ui/input";
+  import { Button } from "@/components/ui/button";
 
 interface Seat {
     id: number;
@@ -90,43 +100,45 @@ export default function Dashboard() {
                 </div>
 
                 {/* Booking Form */}
-                <div className="flex flex-col gap-4">
-                    <div>
-                        <label className="block font-semibold mb-1">Book Seats</label>
-                        <div className="flex gap-2">
-                            <input
-                                type="number"
-                                className="border p-2 rounded w-40"
-                                placeholder="Enter number of seats"
-                                value={numToBook}
-                                onChange={(e) => setNumToBook(e.target.value)}
-                            />
-                            <button
-                                onClick={handleBook}
-                                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-                            >
-                                Book
-                            </button>
-                        </div>
-                    </div>
-                    <button
-                        onClick={handleReset}
-                        className="bg-blue-400 text-white px-4 py-2 rounded hover:bg-blue-500 w-full"
-                    >
-                        Reset Booking
-                    </button>
-
-                    <div className="mt-4 flex flex-col gap-2">
-                        <div className="flex items-center gap-2">
-                            <div className="w-4 h-4 bg-red-500 rounded"></div>
-                            <span>Booked Seats = {bookedCount}</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <div className="w-4 h-4 bg-green-500 rounded"></div>
-                            <span>Available Seats = {80 - bookedCount}</span>
-                        </div>
-                    </div>
-                </div>
+                <div className=" flex items-center justify-center bg-gray-100 p-6">
+      <Card className="w-full max-w-sm ">
+        <CardHeader>
+          <CardTitle className="text-xl">Book Seats</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div>
+            <Label className="mb-2" htmlFor="numToBook">Select number of Seats</Label>
+            <Input
+              id="numToBook"
+              type="number"
+              value={numToBook}
+              onChange={(e) => setNumToBook(e.target.value)}
+              required
+            />
+          </div>
+          <Button onClick={handleBook} className="w-full">
+            Book
+          </Button>
+          <Button
+            variant="secondary"
+            onClick={handleReset}
+            className="w-full"
+          >
+            Reset Booking
+          </Button>
+        </CardContent>
+        <CardFooter className="flex flex-col items-start space-y-2">
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-4 bg-red-500 rounded"></div>
+            <span>Booked Seats: {bookedCount}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-4 bg-green-500 rounded"></div>
+            <span>Available Seats: {80 - bookedCount}</span>
+          </div>
+        </CardFooter>
+      </Card>
+    </div>
             </div>
         </div>
     );
